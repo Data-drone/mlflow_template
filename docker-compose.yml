@@ -1,10 +1,27 @@
 version: "3.7"
 services:
+  postgresql:
+    image: postgres:10.5
+    container_name: postgresql
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: mlflow_word1
+      POSTGRES_DB: mlflow-db
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    hostname: postgresql
+    restart: always
+
   mlflow-tracker:
     container_name: mlflow_server
+    depends_on:
+      - postgresql
     image: mlflow_tacker_server
     build:
       context: ./mlflow_tracker
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    environment:
+      DB_URI: postgresql+psycopg2://mlflow:mlflow_word1@postgresql:5432/mlflow-db
