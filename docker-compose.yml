@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  mlflow-tracker:
+    container_name: mlflow_server
+    image: mlflow_tacker_server
+    build:
+      context: ./mlflow_tracker
+      dockerfile: dockerfile
+    ports:
+      - "5000:5000"
