@@ -9,6 +9,8 @@ RUN conda install -y psycopg2
 RUN pip install mlflow
 RUN pip --no-cache-dir install --force-reinstall -I pyyaml
 
+# create folder for logging models
 RUN mkdir /opt/models
+RUN chmod 777 /opt/models
 
 CMD ["./start.sh"]
