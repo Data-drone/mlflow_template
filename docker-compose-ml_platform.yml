@@ -5,7 +5,7 @@ services:
     image: postgres:10.5
     container_name: mlflow-pgres
     ports:
-      - 5432:5432
+      - ${ML_FLOW_PGRES_PORT}:5432
     environment:
       POSTGRES_USER: ${ML_FLOW_PGRES_USER} 
       POSTGRES_PASSWORD: ${ML_FLOW_PGRES_PASSWORD} 
