@@ -1,4 +1,5 @@
 version: "3.7"
+
 services:
   mlflow-pgres:
     image: postgres:10.5
@@ -12,7 +13,7 @@ services:
       POSTGRES_INITDB_ARGS: ${ML_FLOW_PGRES_INITDB_ARGS} 
     hostname: mlflow-pgres
     restart: always
-    network:
+    networks:
       - ml_platform
 
   mlflow-tracker:
@@ -31,6 +32,10 @@ services:
       AWS_ACCESS_KEY_ID: ${MINIO_ACCESS_KEY}
       AWS_SECRET_ACCESS_KEY: ${MINIO_SECRET_KEY}
       MLFLOW_S3_ENDPOINT_URL: http://minio:9000
-    network:
+    networks:
       - ml_platform
   
+networks:
+  ml_platform:
+    external: true
+      
