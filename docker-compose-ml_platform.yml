@@ -12,7 +12,6 @@ services:
       POSTGRES_DB: ${ML_FLOW_PGRES_DB} 
       POSTGRES_INITDB_ARGS: ${ML_FLOW_PGRES_INITDB_ARGS} 
     hostname: mlflow-pgres
-    restart: always
     networks:
       - ml_platform
 
