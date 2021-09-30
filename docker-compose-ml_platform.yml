@@ -2,10 +2,12 @@ version: "3.7"
 
 services:
   mlflow-pgres:
-    image: postgres:10.5
+    image: postgres:10.10
     container_name: mlflow-pgres
     ports:
       - ${ML_FLOW_PGRES_PORT}:5432
+    volumes:
+      - mlflow_pg_data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: ${ML_FLOW_PGRES_USER} 
       POSTGRES_PASSWORD: ${ML_FLOW_PGRES_PASSWORD} 
@@ -37,4 +39,7 @@ services:
 networks:
   ml_platform:
     external: true
+
+volumes:
+  mlflow_pg_data:
       

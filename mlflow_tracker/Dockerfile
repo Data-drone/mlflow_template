@@ -3,9 +3,9 @@ FROM continuumio/miniconda3
 COPY ./start.sh ./start.sh
 RUN chmod +x ./start.sh
 
-RUN apt-get install -y libyaml-cpp-dev libyaml-dev
+RUN apt-get update && apt-get install -y libyaml-cpp-dev libyaml-dev
 
-RUN conda install -y psycopg2
+RUN conda install -y -c conda-forge psycopg2
 RUN pip install mlflow boto3
 RUN pip --no-cache-dir install --force-reinstall -I pyyaml
 
